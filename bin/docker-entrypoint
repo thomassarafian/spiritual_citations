@@ -11,12 +11,14 @@ if [ "${@: -2:1}" == "./bin/rails" ] && [ "${@: -1:1}" == "server" ]; then
   echo "🚂 Setting up database for Railway.app..."
   
   # Wait a moment for database to be ready
-  sleep 5
+  sleep 10
   
   # Try to create database (ignore if it exists)
+  echo "🔧 Creating database..."
   ./bin/rails db:create 2>/dev/null || echo "Database might already exist"
   
   # Run migrations
+  echo "📊 Running migrations..."
   ./bin/rails db:migrate
   
   echo "✅ Database setup complete!"
