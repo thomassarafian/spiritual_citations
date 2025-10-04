@@ -78,6 +78,19 @@ test:
 # for a full overview on how database connection configuration can be specified.
 #
 production:
-  <<: *default
-  # Use Railway.app's DATABASE_URL if available, otherwise use individual settings
-  url: <%= ENV["DATABASE_URL"] %>
+  primary:
+    <<: *default
+    # Use Railway.app's DATABASE_URL if available, otherwise use individual settings
+    url: <%= ENV["DATABASE_URL"] %>
+  cache:
+    <<: *default
+    # Use the same database for cache (Solid Cache)
+    url: <%= ENV["DATABASE_URL"] %>
+  queue:
+    <<: *default
+    # Use the same database for queue (Solid Queue)
+    url: <%= ENV["DATABASE_URL"] %>
+  cable:
+    <<: *default
+    # Use the same database for cable (ActionCable/Solid Cable)
+    url: <%= ENV["DATABASE_URL"] %>
